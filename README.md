@@ -1,3 +1,5 @@
+![raycaster image](https://github.com/user-attachments/assets/aad14fa1-1ae4-4677-afdc-14b4e692b326)
+
 The purpose of this porject is to have a foundation for a much larger game project that utilizies Raycasting to it's fullest potential.
 
 I will not spoil what this project will evolve into, because My ideas for the finalized version of this will be. 
