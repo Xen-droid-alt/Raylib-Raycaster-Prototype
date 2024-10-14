@@ -9,10 +9,10 @@ Inputs:
 
   Movement:
 ____________________________________________________
-*  W:               Move Forward                   |
-*  S:               Move Backward                  |
-*  A:               Strafe Left                    |
-*  D:               Strafe Right                   |
-*  Left Arrow Key:  Rotate and Look Left           |
-*  Right Arrow Key: Rotate and Look Right          |
+*  W:               Move Forward                   
+*  S:               Move Backward                  
+*  A:               Strafe Left                    
+*  D:               Strafe Right                   
+*  Left Arrow Key:  Rotate and Look Left           
+*  Right Arrow Key: Rotate and Look Right          
  ___________________________________________________
