@@ -1,12 +1,12 @@
 #include "Global.h"
 #include "raycast.h"
 
-void setRayTarget( Vector2 rayStartPos, Vector2 rayEndPos, int* tilemap)
+void setRayTarget( Vector2 rayStartPos, Vector2 rayEndPos, int tilemap[mapX][mapY])
 {
 	hitInfo rayTarget = ray(rayStartPos, rayEndPos, tilemap);
 }
 
-void rayRender( Vector2 startPos, Vector2 endPos, int* tilemap)
+void rayRender( Vector2 startPos, Vector2 endPos, int tilemap[mapX][mapY])
 {
 	hitInfo hit = ray(startPos, endPos, tilemap);
 
@@ -21,7 +21,7 @@ void rayRender( Vector2 startPos, Vector2 endPos, int* tilemap)
 	}
 }
 
-void rayHitRender(Vector2 startPos, Vector2 endPos, int* tilemap)
+void rayHitRender(Vector2 startPos, Vector2 endPos, int tilemap[mapX][mapY])
 {
 	hitInfo hitRender = ray(startPos, endPos, tilemap);
 
@@ -37,7 +37,7 @@ void rayHitRender(Vector2 startPos, Vector2 endPos, int* tilemap)
 }
 
 #ifndef rayFOV
-	void rayFOV(Vector2 startPos, float viewAngle, int* tilemap)
+	void rayFOV(Vector2 startPos, float viewAngle, int tilemap[mapX][mapY])
 	{
 		const float FOV = 90.0f;							// Field of Vision
 		const float DPP = FOV / RayRenderOutputWidth;		// Degrees Per-Pixel
@@ -68,7 +68,7 @@ void rayHitRender(Vector2 startPos, Vector2 endPos, int* tilemap)
 			Vector2 lineMiddleCeiling{ RayRenderOutputX + x, midPointCeiling };
 			Vector2 lineEnd{ RayRenderOutputX + x, 0 };
 
-			Color wallColor = grayScale(1 - clamp(0, 1, ratio));
+			Color wallColor = grayScale(1 - clamp(0, 1, ratio));		// This is what's Used to create the fog effect on the walls
 			Color floorColor = DARKGREEN;
 			Color ceilingColor = DARKBLUE;
 

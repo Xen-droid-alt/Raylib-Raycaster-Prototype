@@ -14,24 +14,24 @@ bool IsInBounds(Vector2 position)
 		&& position.y < mapY;
 }
 
-int GetCellType(Vector2 position, int* tilemap)
+int GetCellType(Vector2 position, int tilemap[mapX][mapY])
 {
 	if (!IsInBounds(position))
 	{
 		return 1;
 	}
 
-	return tilemap[int(position.y) * mapX + int(position.x)];
+	return tilemap[int(position.x)][int(position.y)];
 }
 
-hitInfo ray(Vector2 startPos, float angle, float distance, int* tilemap)
+hitInfo ray(Vector2 startPos, float angle, float distance, int tilemap[mapX][mapY])
 {
 	Vector2 endPos = startPos + directionVector(angle) * distance;
 
 	return ray(startPos, endPos, tilemap);
 }
 
-hitInfo ray( Vector2 startPos, Vector2 endPos, int* tilemap)
+hitInfo ray( Vector2 startPos, Vector2 endPos, int tilemap[mapX][mapY])
 {
 
 	Vector2 vMouseCell = endPos / float(mapS);

@@ -4,7 +4,8 @@
 #include "player.h"
 
 #ifndef worldMap
-int worldMap[] =         //Map Tiles
+
+int worldMap[mapX][mapY]=         //Map Tiles (now a 2D Array after refactoring. Thx Lancy~ x3)
 {
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
     1,1,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,
@@ -32,16 +33,16 @@ int worldMap[] =         //Map Tiles
 void drawMap2D()
 {
     int x, y;
-    for (y = 0; y < mapY; y++)
+    for (x = 0; x < mapX; x++)
     {
-        for (x = 0; x < mapX; x++)
+        for (y = 0; y < mapY; y++)
         {
             DrawRectangle(
                 x * mapS,
                 y * mapS,
                 mapS,
                 mapS,
-                (worldMap[y * mapX + x] == 1)? WHITE : Fade(BLACK, 0.9f)
+                (worldMap[x][y] == 1) ? WHITE : Fade(BLACK, 0.9f)
             );
 
             DrawRectangleLines(
@@ -57,7 +58,6 @@ void drawMap2D()
 
 Vector2 playerStartPosition = { playerStartXPos, playerStartYPos };
 float playerAngle = 40.0f;
-Vector2 overallPlayerSize = { playerSize, playerSize };
 
 //------------------------------------------------------------------------------------
 // Program main entry point

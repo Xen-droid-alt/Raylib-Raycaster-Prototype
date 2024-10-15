@@ -35,13 +35,13 @@
 #define RayRenderOutputX			mapS*mapX+60
 #define RaycasterOutputY			0
 
-#define RaycasterMaxFogDistance		300.0f
+#define RaycasterMaxFogDistance		320.0f
 //------------------------------------------------------------------------------------
 
 // Player related Definitions
 //------------------------------------------------------------------------------------
-#define playerStartXPos		10*mapS
-#define playerStartYPos		15*mapS
+#define playerStartXPos		15*mapS
+#define playerStartYPos		11*mapS
 #define playerSize			10
 #define playerSpeed			2
 #define playerTurnSpeed		2.5f
@@ -125,7 +125,7 @@ inline Color grayScale(float value)
 }
 
 #ifdef colorScale
-inline Color colorScale(float value1, float value2, float value3, float brightness)
+inline Color colorScale(float value1, float value2, float value3, float transparancy)
 {
 	unsigned char byteValue1 = value1 * 255;
 	unsigned char byteValue2 = value2 * 255;
