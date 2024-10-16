@@ -56,8 +56,8 @@
 
 // Enemy related Definitions
 //------------------------------------------------------------------------------------
-#define enemyXPos			25 * mapS
-#define enemyYPos			25 * mapS
+#define enemyXPos			15 * mapS
+#define enemyYPos			27 * mapS
 #define enemySize			20
 #define enemySpeed			2
 //------------------------------------------------------------------------------------

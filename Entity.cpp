@@ -29,7 +29,7 @@ void player::Update()
 void player::Draw()
 {
     DrawRectangleV(
-        { position.x, position.y },
+        { position.x - 5, position.y - 5 },
         { playerSize, playerSize },
         BLUE
     );     //This is our player...
@@ -48,7 +48,7 @@ void item::Update()
 void item::Draw()
 {
     DrawRectangleV(
-        { position.x, position.y },
+        { position.x - 5, position.y -5 },
         { itemSize, itemSize },
         GREEN
     );
@@ -67,7 +67,7 @@ void enemy::Update()
 void enemy::Draw()
 {
     DrawRectangleV(
-        { position.x, position.y },
+        { position.x - 10, position.y - 10},
         { enemySize, enemySize },
         RED
     );
