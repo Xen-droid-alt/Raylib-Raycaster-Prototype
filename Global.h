@@ -23,9 +23,9 @@
 
 // Map related Definitions
 //------------------------------------------------------------------------------------
-#define mapX	20
-#define mapY	20
-#define mapS	32
+#define mapX	40
+#define mapY	40
+#define mapS	16
 //------------------------------------------------------------------------------------
 
 // Raycaster Definitions
@@ -35,16 +35,31 @@
 #define RayRenderOutputX			mapS*mapX+60
 #define RaycasterOutputY			0
 
-#define RaycasterMaxFogDistance		320.0f
+#define RaycasterMaxFogDistance		400.0f
 //------------------------------------------------------------------------------------
 
 // Player related Definitions
 //------------------------------------------------------------------------------------
-#define playerStartXPos		15*mapS
-#define playerStartYPos		11*mapS
+#define playerStartXPos		26 * mapS
+#define playerStartYPos		36 * mapS
 #define playerSize			10
 #define playerSpeed			2
 #define playerTurnSpeed		2.5f
+//------------------------------------------------------------------------------------
+
+// Item related Definitions
+//------------------------------------------------------------------------------------
+#define itemXPos			10 * mapS
+#define itemYPos			10 * mapS
+#define itemSize			10
+//------------------------------------------------------------------------------------
+
+// Enemy related Definitions
+//------------------------------------------------------------------------------------
+#define enemyXPos			25 * mapS
+#define enemyYPos			25 * mapS
+#define enemySize			20
+#define enemySpeed			2
 //------------------------------------------------------------------------------------
 
 // Math operators
