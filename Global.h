@@ -68,6 +68,17 @@
 #define P2 PI/2
 #define P3 3*PI/2
 
+// Directions
+//------------------------------------------------------------------------------------
+#define North 0.f
+#define Northeast 45.f
+#define East 90.f
+#define Southeast 135.f
+#define South 180.f
+#define Southwest 225.f
+#define West 270.f
+#define Northwest 315.f
+
 inline Vector2 operator/ (Vector2 v, float divide)		//special operator that adds division to Vector 2
 {
 	Vector2 result; 
