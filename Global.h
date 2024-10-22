@@ -49,8 +49,8 @@
 
 // Item related Definitions
 //------------------------------------------------------------------------------------
-#define itemXPos			10 * mapS
-#define itemYPos			10 * mapS
+#define itemXPos			8 * mapS
+#define itemYPos			11 * mapS
 #define itemSize			10
 //------------------------------------------------------------------------------------
 
@@ -111,6 +111,27 @@ inline Vector2 operator* (Vector2 v, float Multiply)		//special operator that ad
 	return result;
 }
 
+inline float vectorLength(Vector2 v)
+{
+	return sqrt(v.x * v.x + v.y * v.y);
+}
+
+inline Vector2 normalizedVector(Vector2 v)
+{
+	// normalized vector = any value between -1 and 1.
+	if (v.x == 0 && v.y == 0)
+	{
+		return v;
+	}
+
+	const float length = vectorLength(v);
+
+	Vector2 result;
+	result.x = v.x / length;
+	result.y = v.y / length;
+	return result;
+}
+
 inline float toRad(float degrees)			// Degrees to Radians 
 {
 	return (degrees / 180.0f) * PI;
@@ -130,11 +151,6 @@ inline Vector2 directionVector(float angle)
 	result.y = -sin(angleInRadians);
 
 	return result;
-}
-
-inline float lerp(float a, float b, float alpha) 
-{
-	return a * (1 - alpha) + b * alpha;
 }
 
 template < class T >
@@ -169,7 +185,7 @@ inline Vector2 renderFlipped(Vector2 value)
 	return value;
 }
 
-inline float clamp(float minimum, float maximum, float value )
+inline float clamp(float minimum, float maximum, float value)
 {
 	if (value > maximum)
 	{
@@ -182,5 +198,18 @@ inline float clamp(float minimum, float maximum, float value )
 	}
 
 	return value;
+}
+
+inline float dot(Vector2 v1, Vector2 v2)	// Dot Product
+{
+	return v1.x * v2.x + v1.y * v2.y;
+}
+
+inline float remap(float minimum, float maximum, float value, float Rmin, float Rmax)
+{
+	const float range = maximum - minimum;
+	const float nValue = 1 - ((maximum - value) / range);
+
+	return lerp(Rmin, Rmax, nValue);
 }
 //------------------------------------------------------------------------------------

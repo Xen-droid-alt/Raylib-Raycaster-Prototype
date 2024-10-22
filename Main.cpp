@@ -87,7 +87,6 @@ float enemyAngle = 50.0f;                                               // Defau
 Vector2 enemyPosition = { enemyXPos, enemyYPos };                       // Enemy Position
 enemy Enemy{enemyPosition, enemyAngle};                                 // Enemy Entity
 
-
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -191,6 +190,7 @@ int main(void)
 
             ClearBackground(DARKGRAY);
 
+#ifndef DrawText
             DrawText("Raycaster Prototype", 
                 GetScreenWidth() - 250, 
                 30, 
@@ -243,7 +243,29 @@ int main(void)
                 20,
                 BLUE);
 
+            DrawText(
+                "The Blue Square: player Entity",
+                GetScreenWidth() - 500,
+                330,
+                20,
+                BLUE);
+
+            DrawText(
+                "The Green Square: item Entity",
+                GetScreenWidth() - 500,
+                360,
+                20,
+                GREEN);
+
+            DrawText(
+                "The Red Square: enemy Entity",
+                GetScreenWidth() - 500,
+                390,
+                20,
+                RED);
+
             DrawFPS(GetScreenWidth() - 95, 10);
+#endif // !DrawText
 
             DrawRectangle(
                 RayRenderOutputX, 
@@ -264,20 +286,6 @@ int main(void)
             DrawText("  * Rays check if their source are",      RayRenderOutputX * 2, 200, 20, LIGHTGRAY);
             DrawText("     in bounds of the Tile Map",          RayRenderOutputX * 2, 220, 20, LIGHTGRAY);
 
-#ifdef RenderTestRayCasts
-            rayRender({ 10 * mapS, 10 * mapS }, playerStartPosition, worldMap);
-            rayRender({ 11 * mapS, 10 * mapS }, playerStartPosition, worldMap);
-            rayRender({ 12 * mapS, 10 * mapS }, playerStartPosition, worldMap);
-
-            rayRender({ 10 * mapS, 11 * mapS }, playerStartPosition, worldMap);
-            rayRender({ 11 * mapS, 11 * mapS }, playerStartPosition, worldMap);
-            rayRender({ 12 * mapS, 11 * mapS }, playerStartPosition, worldMap);
-
-            rayRender({ 10 * mapS, 12 * mapS }, playerStartPosition, worldMap);
-            rayRender({ 11 * mapS, 12 * mapS }, playerStartPosition, worldMap);
-            rayRender({ 12 * mapS, 12 * mapS }, playerStartPosition, worldMap);
-#endif // RenderTestRayCasts
-
             drawMap2D();
 
             rayRender(Nebbie.position, mousePosition, worldMap);
@@ -287,6 +295,7 @@ int main(void)
             rayFOV(Nebbie.position, Nebbie.angle, worldMap);
 
             Item.Draw();
+
             Enemy.Draw();
 
             Nebbie.Draw();  //This is our player...

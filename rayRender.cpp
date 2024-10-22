@@ -1,5 +1,7 @@
 #include "Global.h"
+#include "rayRender.h"
 #include "raycast.h"
+#include "Entity.h"
 
 void setRayTarget( Vector2 rayStartPos, Vector2 rayEndPos, int tilemap[mapX][mapY])
 {
@@ -36,6 +38,20 @@ void rayHitRender(Vector2 startPos, Vector2 endPos, int tilemap[mapX][mapY])
 	}
 }
 
+#ifndef sprite code
+sprite::sprite(Vector3 position) : position(position)
+{
+	// Sprite Struct
+}
+
+Vector3 itemPos = { 
+	itemPos.x = itemXPos,
+	itemPos.y = itemYPos,
+	itemPos.z = 0 };		// Sprite x, y and z position 
+
+sprite itemSprite{ itemPos };		// Sprite Entity
+#endif // !sprite code
+
 #ifndef rayFOV
 	void rayFOV(Vector2 startPos, float viewAngle, int tilemap[mapX][mapY])
 	{
@@ -47,6 +63,8 @@ void rayHitRender(Vector2 startPos, Vector2 endPos, int tilemap[mapX][mapY])
 
 		for (int x = 0; x < RayRenderOutputWidth; x++)
 		{
+#ifndef wallSegment
+
 			const float PA = VL - x * DPP;										// Current Pixel Angle
 			const float RPA = VA - PA;											// Reletive Pixel Angle
 
@@ -75,7 +93,41 @@ void rayHitRender(Vector2 startPos, Vector2 endPos, int tilemap[mapX][mapY])
 			DrawLineV(lineMiddle, lineStart, floorColor);				// Draw the Floor
 			DrawLineV(lineMiddle, lineEnd, wallColor);					// Draw the Walls
 			DrawLineV(lineMiddleCeiling, lineEnd, ceilingColor);		// Draw the ceiling
+#endif // !wallSegment
 		}
+
+#ifndef sprite draw
+		// Mini Dev Log Part 2
+		// By: Nebula
+		// Date: 10/21/2024
+		// Refactor time! Part 2!
+		// New Sprite rendering code will use Dot Products! x3
+		// The old code was not very good. I hated it.
+
+		const float spriteDist = vectorLength(itemSprite.getPosition2D() - startPos);		// Hacky Sprite Distance...
+
+		const Vector2 vecVS = normalizedVector(itemSprite.getPosition2D() - startPos);		// View Sprite
+		const Vector2 vecVAP = directionVector(viewAngle + 90.0f);							// Rotate View Angle by 90 Degrees...
+		const Vector2 vecVA = directionVector(viewAngle);							
+		const Vector2 vecVL = directionVector(VL);
+
+		// Dot Products
+		const float DS = dot(vecVAP, vecVS);		// Dot Sprite Direction Horizontal
+		const float DSF = dot(vecVA, vecVS);		// Dot View Sprite Forward
+		const float DL = dot(vecVAP, vecVL);		// Dot View Left
+		const float DR = -DL;						// Dot View Right
+
+		if (DSF > 0 && DS < DL && DS > DR)			// Occlusion Culling for Sprites. Only draw the srpite if it's within range of the sudo-3D rendered Output.
+		{
+			const float pixelX = remap(DL, DR, DS, 0, RayRenderOutputWidth);
+
+			DrawRectangleV(
+				{ RayRenderOutputX + pixelX, RayRenderOutputHeight / 2 },
+				{2000 / spriteDist, 2000 / spriteDist},
+				GREEN
+			);
+		}
+#endif	
 
 #ifndef DEBUG
 		// Debug Lines
@@ -85,3 +137,4 @@ void rayHitRender(Vector2 startPos, Vector2 endPos, int tilemap[mapX][mapY])
 #endif // DEBUG
 	}
 #endif // rayFOV
+

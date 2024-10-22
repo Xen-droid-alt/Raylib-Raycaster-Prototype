@@ -12,22 +12,22 @@ struct baseEntity {
 };
 
 struct player : public baseEntity {
-	void Update();
-	void Draw();
+	void Update() override;
+	void Draw() override;
 
 	player(Vector2 pos, float angle);
 };
 
 struct enemy : public baseEntity {
-	void Update();
-	void Draw();
+	void Update() override;
+	void Draw() override;
 
 	enemy(Vector2 pos, float angle);
 };
 
 struct item : public baseEntity {
-	void Update();
-	void Draw();
+	void Update() override;
+	void Draw() override;
 
 	item(Vector2 pos);
 };
